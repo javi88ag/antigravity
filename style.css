@@ -381,6 +381,89 @@ body {
     padding-bottom: 40px;
 }
 
+.footer-col h5 {
+    color: #ffc107;
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col li {
+    margin-bottom: 8px;
+}
+
+.footer-bottom {
+    font-size: 13px;
+    opacity: 0.8;
+    margin-top: 10px;
+}
+
+/*Redes sociales*/
+.redes {
+    display: flex;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.redes i {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.redes i:hover {
+    background: #ffc107;
+    color: #1b2e42;
+    transform: translateY(-3px);
+}
+
+/*Newsletter*/
+.newsletter {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.newsletter-box {
+    display: flex;
+    width: 100%;
+    max-width: 300px;
+}
+
+.newsletter-box input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 6px 0 0 6px;
+    outline: none;
+}
+
+.newsletter-box button {
+    background: #ffc107;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.newsletter-box button:hover {
+    background: #e0a800;
+}
+
 
 
 /*Responsive*/
