@@ -99,8 +99,10 @@ Eso es programación orientada a eventos. */
 const productos = [
     { id: 1, nombre: "Memoria RAM 8GB", precio: 40, },
     { id: 2, nombre: "SSD 240GB", precio: 20 },
-    { id: 3, nombre: "Procesador i5 2500k", precio: 30 }
-    { id: 4, nombre: "Placa Madre h61", precio: 30 }
+    { id: 3, nombre: "Procesador i5 2500k", precio: 30 },
+    { id: 4, nombre: "Placa Madre h61", precio: 30 },
+    { id: 5, nombre: "Cooler Master T20 AMD AM4 Cooler", precio: 15 },
+    { id: 6, nombre: "Gabinete Atx Multilaser Ga190", precio: 22 },
 ];
 
 let carrito = [];
@@ -125,20 +127,22 @@ const contadorNav = document.getElementById("contador-carrito");
 const btnCarrito = document.getElementById("btn-carrito");
 const dropdown = document.querySelector(".dropdown-carrito");
 
-//Eventos Productos
+const btnVaciar = document.getElementById("btn-vaciar");
+const buscador = document.getElementById("buscador");
 
+//Eventos Productos
 botones.forEach(boton => {
     boton.addEventListener("click", handleAgregar);
 });
 
 
 //Eventos Carrito
-
 btnCarrito.addEventListener("click", function (e) {
     e.preventDefault();
     dropdown.classList.toggle("activo");
 });
 
+//Evento cerrar carrito si se hace click afuera 
 document.addEventListener("click", function (e) {
     if (!dropdown.contains(e.target) && !btnCarrito.contains(e.target)) {
         dropdown.classList.remove("activo");
@@ -160,19 +164,54 @@ document.getElementById("btn-finalizar")
         mostrarCarrito();
     });
 
+//Evento vaciar carrito
+btnVaciar.addEventListener("click", function () {
+
+    carrito = [];
+
+    guardarCarrito();
+
+    mostrarCarrito();
+
+});
+
+//Evento buscador
+buscador.addEventListener("input", function () {
+
+    const texto = buscador.value.toLowerCase();
+
+    const productosHTML = document.querySelectorAll(".producto-card");
+
+    productosHTML.forEach(producto => {
+
+        const nombre = producto
+            .querySelector("h3")
+            .textContent
+            .toLowerCase();
+
+        if (nombre.includes(texto)) {
+            producto.style.display = "block";
+        } else {
+            producto.style.display = "none";
+        }
+
+    });
+
+});
+
 /*Handler: es una función que coordina la ejecución de un 
 evento evitando que se sobrecargue el sector del evento*/
 
 function handleAgregar(event) {
 
-    const id = Number(event.target.dataset.id);
+    const id = Number(event.currentTarget.dataset.id);
+
     const producto = productos.find(p => p.id === id);
 
     if (!producto) return;
 
     agregarProducto(producto);
     mostrarCarrito();
-
     mostrarToast();
 
     dropdown.classList.add("activo");
@@ -219,6 +258,19 @@ function mostrarCarrito() {
     listaNav.innerHTML = "";
 
     let totalCantidad = 0;
+
+    if (carrito.length === 0) {
+
+        const li = document.createElement("li");
+        li.textContent = "Tu carrito está vacío";
+
+        listaNav.appendChild(li);
+
+        totalNav.textContent = 0;
+        contadorNav.textContent = 0;
+
+        return;
+    }
 
     carrito.forEach(producto => {
 
@@ -282,4 +334,4 @@ function calcularTotal() {
     return total;
 }
 
-cargarCarrito();
+document.addEventListener("DOMContentLoaded", cargarCarrito);
