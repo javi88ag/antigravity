@@ -97,9 +97,10 @@ Eso es programación orientada a eventos. */
 
 //-----------------------------------------------------
 const productos = [
-    { id: 1, nombre: "Memoria RAM 8GB", precio: 40 },
+    { id: 1, nombre: "Memoria RAM 8GB", precio: 40, },
     { id: 2, nombre: "SSD 240GB", precio: 20 },
     { id: 3, nombre: "Procesador i5 2500k", precio: 30 }
+    { id: 4, nombre: "Placa Madre h61", precio: 30 }
 ];
 
 let carrito = [];
